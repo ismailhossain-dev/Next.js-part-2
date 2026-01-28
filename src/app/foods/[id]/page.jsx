@@ -1,0 +1,76 @@
+import React from "react";
+
+// Fetch single food
+const getSingleFood = async (id) => {
+  const res = await fetch(`https://taxi-kitchen-api.vercel.app/api/v1/foods/${id}`);
+
+  const data = await res.json();
+  return data.details;
+};
+
+// Food Details Page
+const page = async ({ params }) => {
+  console.log(params);
+  const { id } = await params;
+  console.log(id);
+  const food = await getSingleFood(id);
+  //   console.log(food);
+  // If food not found
+  if (!food) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <h2 className="text-2xl font-semibold text-red-500">Food Not Found 😢</h2>
+      </div>
+    );
+  }
+
+  return (
+    <div className="max-w-6xl mx-auto p-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-black border-2 border-gray-500 rounded-2xl shadow-lg p-6">
+        {/* Image */}
+        <div className="w-full h-[350px] overflow-hidden rounded-xl">
+          <img
+            src={food.foodImg}
+            alt={food.title}
+            className="w-full h-full object-cover hover:scale-105 transition duration-300"
+          />
+        </div>
+
+        {/* Content */}
+        <div className="space-y-4">
+          <h1 className="text-3xl font-bold text-white">{food.title}</h1>
+
+          <div className="flex gap-3 flex-wrap">
+            <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">
+              {food.category}
+            </span>
+            <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
+              {food.area}
+            </span>
+          </div>
+
+          <p className="text-2xl font-bold text-green-600">৳ {food.price}</p>
+
+          {/* Buttons */}
+          <div className="flex gap-4 pt-4">
+            <button className="px-6 py-2 rounded-lg bg-green-600 hover:bg-green-700 text-white font-medium transition">
+              Add to Cart
+            </button>
+
+            {food.video && (
+              <a
+                href={food.video}
+                target="_blank"
+                className="px-6 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 text-gray-700 font-medium transition"
+              >
+                Watch Video ▶
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default page;
