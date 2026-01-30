@@ -1,9 +1,10 @@
 import Link from "next/link";
 import React from "react";
+import CardButton from "../buttons/CardButton";
 
 const FoodCard = ({ food }) => {
   return (
-    <div className="bg-black border-2 border-gray-500 text-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden w-full ">
+    <div className="bg-black border-2 border-gray-500 text-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden flex flex-col ">
       {/* Image */}
       <div className="h-48 w-full overflow-hidden">
         <img
@@ -22,17 +23,12 @@ const FoodCard = ({ food }) => {
         <p className="text-xl font-bold text-green-600">৳ {food.price}</p>
 
         {/* Buttons */}
-        <div className="flex gap-3 pt-3">
-          <Link
-            href="/"
-            className="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg text-sm font-medium transition text-center"
-          >
-            Add to Cart
-          </Link>
+        <div className="flex gap-3 pt-3 mt-auto">
+          <CardButton food={food}></CardButton>
 
           <Link
             href={`/foods/${food.id}`}
-            className="flex-1 border border-gray-300 text-center hover:bg-gray-100 text-white py-2 rounded-lg text-sm font-medium transition"
+            className="flex-1 border border-gray-300 text-center  text-white py-2 rounded-lg text-sm font-medium hover:bg-pink-500 transition "
           >
             View Details
           </Link>

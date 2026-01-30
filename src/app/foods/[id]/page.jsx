@@ -1,5 +1,9 @@
 import React from "react";
-
+//next.js docs teke niye aschi kotho golo jinish ke genarate korar jorno
+//amra detail page 3 ta id ekta diye ditesi
+export function generateStaticParams() {
+  return [{ id: "52866" }, { id: "52859" }, { id: "52881" }];
+}
 // Fetch single food
 const getSingleFood = async (id) => {
   const res = await fetch(`https://taxi-kitchen-api.vercel.app/api/v1/foods/${id}`);
@@ -8,11 +12,11 @@ const getSingleFood = async (id) => {
   return data.details;
 };
 
-// Food Details Page
+// Food Details Page and we are bringing dynamic id url in params
 const page = async ({ params }) => {
   console.log(params);
   const { id } = await params;
-  console.log(id);
+  console.log("single id ", id);
   const food = await getSingleFood(id);
   //   console.log(food);
   // If food not found
