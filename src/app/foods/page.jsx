@@ -2,7 +2,10 @@ import FoodCard from "@/components/cards/FoodCard";
 import React from "react";
 import CartItems from "./CartItems";
 import InputSearch from "@/components/InputSearch";
-
+export const metadata = {
+  title: "All Food",
+  description: "Best FastFood in Rangamati",
+};
 //import css
 // import style from "./food.module.css";
 // data fetching

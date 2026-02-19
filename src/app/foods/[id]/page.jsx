@@ -1,9 +1,43 @@
 import React from "react";
 //next.js docs teke niye aschi kotho golo jinish ke genarate korar jorno
 //amra detail page 3 ta id ekta diye ditesi
+
 export function generateStaticParams() {
   return [{ id: "52866" }, { id: "52859" }, { id: "52881" }];
 }
+//details page potiti food jorno dynamic matadata
+
+//next.js documentation teke deke kortesi
+//part-3 v:7 13minute
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const res = await fetch(`https://taxi-kitchen-api.vercel.app/api/v1/foods/${id}`);
+
+  //details jodi data na take default vae {} set kore disi
+  const { details = {} } = await res.json();
+  return {
+    title: details.title,
+
+    // other filed
+
+    generator: "Next.js",
+    applicationName: "Next.js",
+    referrer: "origin-when-cross-origin",
+    keywords: ["Next.js", "React", "JavaScript"],
+    authors: [{ name: "Seb" }, { name: "Josh", url: "https://nextjs.org" }],
+    creator: "Jiachi Liu",
+    publisher: "Sebastian Markbåge",
+    formatDetection: {
+      email: false,
+      address: false,
+      telephone: false,
+    },
+  };
+  //server teke console object dive
+  // console.log("hello how are you", data);
+  // return da"ta.details;
+}
+//finished meta data
 // Fetch single food
 const getSingleFood = async (id) => {
   const res = await fetch(`https://taxi-kitchen-api.vercel.app/api/v1/foods/${id}`);

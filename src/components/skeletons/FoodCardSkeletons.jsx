@@ -1,5 +1,5 @@
 import React from "react";
-
+//Part-2; v: 3 create skeleton
 //chatgpt teke korsi
 const FoodCardSkeletons = () => {
   return (
