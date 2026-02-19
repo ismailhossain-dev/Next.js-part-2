@@ -4,13 +4,17 @@ import CardButton from "../buttons/CardButton";
 import Image from "next/image";
 
 const FoodCard = ({ food }) => {
+  const { foodImg, title, category, price } = food;
+  if (!food.title) {
+    <h2>Page Not Found</h2>;
+  }
   return (
     <div className="bg-black border-2 border-gray-500 text-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden flex flex-col ">
       {/* Image */}
       <div className="h-48 w-full overflow-hidden">
         <Image
-          src={food.foodImg}
-          alt={food.title}
+          src={foodImg}
+          alt={title}
           className="w-full h-full object-cover hover:scale-105 transition duration-300"
           width={300}
           height={150}
@@ -19,11 +23,11 @@ const FoodCard = ({ food }) => {
 
       {/* Content */}
       <div className="p-4 space-y-2">
-        <h2 className="text-lg font-semibold text-white">{food.title}</h2>
+        <h2 className="text-lg font-semibold text-white">{title}</h2>
 
-        <p className="text-sm text-white">Category: {food.category}</p>
+        <p className="text-sm text-white">Category: {category}</p>
 
-        <p className="text-xl font-bold text-green-600">৳ {food.price}</p>
+        <p className="text-xl font-bold text-green-600">৳ {price}</p>
 
         {/* Buttons */}
         <div className="flex gap-3 pt-3 mt-auto">

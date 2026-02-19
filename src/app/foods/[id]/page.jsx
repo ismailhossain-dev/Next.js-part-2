@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import React from "react";
 //next.js docs teke niye aschi kotho golo jinish ke genarate korar jorno
 //amra detail page 3 ta id ekta diye ditesi
@@ -19,19 +20,6 @@ export async function generateMetadata({ params }) {
     title: details.title,
 
     // other filed
-
-    generator: "Next.js",
-    applicationName: "Next.js",
-    referrer: "origin-when-cross-origin",
-    keywords: ["Next.js", "React", "JavaScript"],
-    authors: [{ name: "Seb" }, { name: "Josh", url: "https://nextjs.org" }],
-    creator: "Jiachi Liu",
-    publisher: "Sebastian Markbåge",
-    formatDetection: {
-      email: false,
-      address: false,
-      telephone: false,
-    },
   };
   //server teke console object dive
   // console.log("hello how are you", data);
@@ -54,12 +42,9 @@ const page = async ({ params }) => {
   const food = await getSingleFood(id);
   //   console.log(food);
   // If food not found
-  if (!food) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <h2 className="text-2xl font-semibold text-red-500">Food Not Found 😢</h2>
-      </div>
-    );
+  //jokon user website url olta palta man diye dive tokon jodi food tar title na take tahole eta dekabe
+  if (!food.title) {
+    redirect("/foods");
   }
 
   return (

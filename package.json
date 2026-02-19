@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "auth-provider": "^0.6.2",
     "mongod": "^2.0.0",
     "mongodb": "^7.1.0",
     "next": "16.1.5",

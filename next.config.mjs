@@ -22,6 +22,19 @@ const nextConfig = {
       },
     ],
   },
+
+  //Redirecting next.js website work
+  //user jodi http://localhost:3000/foo-details/43434 leki tahole amader ke details page niye jabe
+  async redirects() {
+    return [
+      // Basic redirect
+      {
+        source: "/foods-details/:id",
+        destination: "/foods/:id",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
